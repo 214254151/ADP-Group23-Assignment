@@ -82,7 +82,7 @@ public class Bill
             return this;
         }
 
-        public Bill builder()
+        public Bill build()
         {
             return new Bill(this);
         }
