@@ -1,3 +1,7 @@
+//BillService.java
+//Class for Bill Service
+//Author: Cameron van Wyk(219088470)
+
 package za.ac.cput.service.product;
 
 import za.ac.cput.entity.product.Bill;

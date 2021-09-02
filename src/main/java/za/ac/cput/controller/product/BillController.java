@@ -1,3 +1,7 @@
+//BillController.java
+//Controller for Bill
+//Author: Cameron van Wyk(219088470)
+
 package za.ac.cput.controller.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
