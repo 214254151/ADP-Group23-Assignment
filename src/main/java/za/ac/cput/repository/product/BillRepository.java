@@ -1,3 +1,7 @@
+//BillRepository.java
+//Repository for Bill
+//Author: Cameron van Wyk(219088470)
+
 package za.ac.cput.repository.product;
 
 import za.ac.cput.entity.product.Bill;
