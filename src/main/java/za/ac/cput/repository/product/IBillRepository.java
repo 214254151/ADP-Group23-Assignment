@@ -5,7 +5,7 @@ import za.ac.cput.repository.IRepository;
 
 import java.util.Set;
 
-public interface IBillRepository extends IRepository
+public interface IBillRepository extends IRepository<Bill, String>
 {
     Set<Bill> getAll();
 }
