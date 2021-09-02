@@ -1,6 +1,6 @@
-package za.ac.cput.factory.customer;
+package za.ac.cput.factory.product;
 
-import za.ac.cput.entity.customer.Bill;
+import za.ac.cput.entity.product.Bill;
 import za.ac.cput.util.GenericHelper;
 
 public class BillFactory

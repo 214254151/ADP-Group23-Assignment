@@ -2,7 +2,7 @@
 //Entity for Bill
 //Author: Cameron van Wyk(219088470)
 
-package za.ac.cput.entity.customer;
+package za.ac.cput.entity.product;
 
 public class Bill
 {
