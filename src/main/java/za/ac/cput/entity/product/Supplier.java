@@ -87,5 +87,10 @@ public class Supplier {
                     ", supplierContact='" + supplierContact + '\'' +
                     '}';
         }
+
+        public Supplier build() {
+
+            return new Supplier(this);
+        }
     }
 }
