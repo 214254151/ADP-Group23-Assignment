@@ -4,11 +4,12 @@
 
 package za.ac.cput.service.product;
 
+import org.springframework.stereotype.Service;
 import za.ac.cput.entity.product.Bill;
 import za.ac.cput.repository.product.BillRepository;
 
 import java.util.Set;
-
+@Service
 public class BillService implements IBillService
 {
     private static BillService billService;
