@@ -1,3 +1,7 @@
+//BillControllerTest.java
+//Test for BillController
+//Author: Cameron van Wyk(219088470)
+
 package za.ac.cput.controller.product;
 
 import org.junit.jupiter.api.MethodOrderer;

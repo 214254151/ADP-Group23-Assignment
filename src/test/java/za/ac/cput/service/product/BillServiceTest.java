@@ -1,3 +1,7 @@
+//BillServiceTest.java
+//Test for BillService
+//Author: Cameron van Wyk(219088470)
+
 package za.ac.cput.service.product;
 
 import org.junit.jupiter.api.MethodOrderer;

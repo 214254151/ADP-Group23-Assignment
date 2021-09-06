@@ -1,3 +1,7 @@
+//BillRepositoryTest.java
+//Test for BillRepository
+//Author: Cameron van Wyk(219088470)
+
 package za.ac.cput.repository.product;
 
 import org.junit.jupiter.api.MethodOrderer;
