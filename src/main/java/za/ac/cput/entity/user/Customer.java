@@ -84,15 +84,16 @@ public class Customer {
             return this;
         }
 
-        @Override
-        public String toString() {
-            return "Builder{" +
-                    "customerID='" + customerID + '\'' +
-                    ", firstName='" + firstName + '\'' +
-                    ", lastName='" + lastName + '\'' +
-                    ", contactNumber='" + contactNumber + '\'' +
-                    ", email='" + email + '\'' +
-                    '}';
-        }
+
+    }
+    @Override
+    public String toString() {
+        return "Builder{" +
+                "customerID='" + customerID + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

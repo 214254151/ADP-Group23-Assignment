@@ -25,7 +25,7 @@ public class CustomerFactory {
             return null;
         }
 
-        return new Customer.Builder().firstName(firstName).lastName(lastName).contactNumber(contactNumber).email(email).builder();
+        return new Customer.Builder().customerID(customerID).firstName(firstName).lastName(lastName).contactNumber(contactNumber).email(email).builder();
     }
 
 }
