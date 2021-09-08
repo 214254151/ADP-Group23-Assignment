@@ -1,5 +1,11 @@
 package za.ac.cput.repository.product;
 
+/**
+ * Author: Tauriq-Allie Wilkinson (219071330)
+ * Group 23
+ * Supplier Repository
+ * SupplierRepository.java
+ */
 import za.ac.cput.entity.product.Supplier;
 
 import java.util.HashSet;

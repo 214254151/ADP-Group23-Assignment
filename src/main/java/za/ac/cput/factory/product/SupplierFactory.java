@@ -1,3 +1,10 @@
+/**
+ * Author: Tauriq-Allie Wilkinson (219071330)
+ * Group 23
+ * Supplier Factory
+ * SupplierFactory.java
+ */
+
 package za.ac.cput.factory.product;
 
 import za.ac.cput.entity.product.Supplier;
