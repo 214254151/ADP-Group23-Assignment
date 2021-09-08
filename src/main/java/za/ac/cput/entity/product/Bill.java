@@ -4,14 +4,18 @@
 
 package za.ac.cput.entity.product;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Bill
 {
+    @Id
     private String billID;
     private double subTotal, tax, total;
 
     private Bill()
     {
-
     }
 
     private Bill( Builder builder)
