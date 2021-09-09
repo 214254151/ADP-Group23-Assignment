@@ -4,58 +4,51 @@
 
 package za.ac.cput.service.product;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.entity.product.Bill;
 import za.ac.cput.repository.product.BillRepository;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 public class BillService implements IBillService
 {
-    private static BillService billService;
-    private BillRepository billRepository;
+   private static BillService service = null;
 
-    private BillService()
-    {
-        this.billRepository = BillRepository.getRepository();
-    }
+   @Autowired
+    private BillRepository repository;
 
-    public static BillService getBillService()
-    {
-        if (billService == null)
-        {
-            billService = new BillService();
-        }
-
-        return billService;
-    }
-
-    @Override
+   @Override
     public Bill create(Bill bill)
-    {
-        return this.billRepository.create(bill);
-    }
+   {
+       return this.repository.save(bill);
+   }
 
-    @Override
-    public Bill read(String s)
-    {
-        return this.billRepository.read(s);
-    }
+   @Override
+    public Bill read(String billID)
+   {
+       return this.repository.findById(billID).orElse(null);
+   }
 
-    @Override
+   @Override
     public Bill update(Bill bill)
-    {
-        return this.billRepository.update(bill);
-    }
+   {
+       if (this.repository.existsById(bill.getBillID()))
+           return this.repository.save(bill);
+       return null;
+   }
 
-    @Override
-    public void delete(String s)
-    {
-        this.billRepository.delete(s);
-    }
+   @Override
+    public void delete(String billID)
+   {
+       this.repository.deleteById(billID);
+   }
 
-    @Override
-    public Set<Bill> getAll() {
-        return this.billRepository.getAll();
-    }
+   @Override
+    public Set<Bill> getAll()
+   {
+       return this.repository.findAll().stream().collect(Collectors.toSet());
+   }
 }
