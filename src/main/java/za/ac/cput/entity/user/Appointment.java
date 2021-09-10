@@ -1,3 +1,10 @@
+/*
+ *  Name: Abongile Tshopi
+ *  Student Number: 214254151
+ *  Group: 23
+ *
+ */
+
 package za.ac.cput.entity.user;
 
 public class Appointment {
