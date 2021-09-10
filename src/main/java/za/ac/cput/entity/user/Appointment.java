@@ -9,11 +9,10 @@ package za.ac.cput.entity.user;
 
 public class Appointment {
 
-    private String appointmentID, customerID, employeeID, appointmentType;
-    private String startTime, endTime;
+    private String appointmentID, customerID, employeeID, appointmentType, startTime, endTime;
     private Double employeeRate;
 
-    private Appointment() {}
+    //private Appointment() {}
 
     private Appointment (Builder builder) {
         this.appointmentID=builder.appointmentID;
@@ -25,67 +24,72 @@ public class Appointment {
         this.endTime = builder.endTime;
     }
 
-    public String getAppointmentID() {
-        return appointmentID;
-    }
-    public String getCustomerID() {
-        return customerID;
-    }
-    public String getEmployeeID() {
-        return employeeID;
-    }
-    public String getAppointmentType() {
-        return appointmentType;
-    }
-    public Double getEmployeeRate() {return employeeRate; }
-    public String getStartTime() {
-        return startTime;
-    }
-    public String getEndTime() {
-        return endTime;
-    }
+//    public String getAppointmentID() {
+//        return appointmentID;
+//    }
+//    public String getCustomerID() {
+//        return customerID;
+//    }
+//    public String getEmployeeID() {
+//        return employeeID;
+//    }
+//    public String getAppointmentType() {
+//        return appointmentType;
+//    }
+//    public Double getEmployeeRate() {return employeeRate; }
+//    public String getStartTime() {
+//        return startTime;
+//    }
+//    public String getEndTime() {
+//        return endTime;
+//    }
 
-    public static class Builder{
-        private String appointmentID, customerID, employeeID, appointmentType;
-        private String startTime, endTime;
+    public static class Builder {
+        private String appointmentID, customerID, employeeID, appointmentType, startTime, endTime;
         private Double employeeRate;
 
-        public Builder appointmentID(String appointmentID) {
+        public Builder setAppointmentID(String appointmentID) {
             this.appointmentID = appointmentID;
             return this;
         }
-        public Builder customerID(String customerID) {
+
+        public Builder setCustomerID(String customerID) {
             this.customerID = customerID;
             return this;
         }
-        public Builder employeeID(String employeeID) {
+
+        public Builder setEmployeeID(String employeeID) {
             this.employeeID = employeeID;
             return this;
         }
-        public Builder appointmentType(String appointmentType) {
+
+        public Builder setAppointmentType(String appointmentType) {
             this.appointmentType = appointmentType;
             return this;
         }
-        public Builder startTime(String startTime) {
+
+        public Builder setStartTime(String startTime) {
             this.startTime = startTime;
             return this;
         }
-        public Builder endTime(String endTime) {
+
+        public Builder setEndTime(String endTime) {
             this.endTime = endTime;
             return this;
         }
-        public Builder employeeRate(Double employeeRate) {
+
+        public Builder setEmployeeRate(Double employeeRate) {
             this.employeeRate = employeeRate;
             return this;
         }
 
-        public Appointment builder() {
+        public Appointment build() {
             return new Appointment(this);
         }
 
         public Builder copy(Appointment appointment) {
-            this.appointmentID=appointmentID;
-            this.customerID =appointment.customerID;
+            this.appointmentID = appointment.appointmentID;
+            this.customerID = appointment.customerID;
             this.employeeID = appointment.employeeID;
             this.appointmentType = appointment.appointmentType;
             this.employeeRate = appointment.employeeRate;
@@ -93,6 +97,7 @@ public class Appointment {
             this.endTime = appointment.endTime;
             return this;
         }
+    }
 
         @Override
         public String toString() {
@@ -107,4 +112,4 @@ public class Appointment {
                     '}';
         }
     }
-}
+
