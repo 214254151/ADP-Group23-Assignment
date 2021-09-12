@@ -8,8 +8,14 @@ package za.ac.cput.entity.user;
  *  CustomerService
  */
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Customer {
+    @Id
     private String customerID;
+
     private String firstName, lastName, contactNumber, email;
 
     private Customer() {}
