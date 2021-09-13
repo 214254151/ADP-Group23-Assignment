@@ -4,8 +4,14 @@
  */
 package za.ac.cput.entity.user;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Employee {
-    private String employeeID, firstName, lastName, phoneNumber;
+    @Id
+    private String employeeID;
+    private String firstName, lastName, phoneNumber;
     private Double employeeRate;
 
     public Employee(String employeeID, String firstName , String lastName, String phoneNumber, Double employeeRate) {
@@ -23,6 +29,10 @@ public class Employee {
         this.lastName = builder.lastName;
         this.phoneNumber = builder.phoneNumber;
         this.employeeRate = builder.employeeRate;
+
+    }
+
+    public Employee() {
 
     }
 
