@@ -11,7 +11,8 @@ import za.ac.cput.factory.user.EmployeeFactory;
 import za.ac.cput.service.user.EmployeeService;
 
 import java.util.Set;
-
+@RestController
+@RequestMapping("/employee")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
