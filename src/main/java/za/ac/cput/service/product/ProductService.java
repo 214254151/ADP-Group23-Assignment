@@ -6,12 +6,14 @@ package za.ac.cput.service.product;
  *  Class for Product Service
  */
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import za.ac.cput.entity.product.Product;
 import za.ac.cput.repository.product.ProductRepository;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Service
 public class ProductService implements IProductService {
     private static ProductService productService = null;
 
