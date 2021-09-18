@@ -1,10 +1,12 @@
 package za.ac.cput.service.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.entity.user.Customer;
 import za.ac.cput.repository.user.CustomerRepository;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /*
  *  Name: Tye Walker
@@ -16,43 +18,41 @@ import java.util.Set;
 
 @Service
 public class CustomerService implements ICustomerService {
+    private static CustomerService service = null;
 
-    private static CustomerService customerService;
-    private CustomerRepository customerRepository;
-
-    private CustomerService() {
-        this.customerRepository = CustomerRepository.getRepository();
-    }
-
-    public static CustomerService getCustomerService() {
-        if (customerService == null) {
-            customerService = new CustomerService();
-        }
-        return customerService;
-    }
+    @Autowired
+    private CustomerRepository repository;
 
     @Override
     public Customer create(Customer customer) {
-        return this.customerRepository.create(customer);
+        return this.repository.save(customer);
     }
 
     @Override
     public Customer read(String customerID) {
-        return this.customerRepository.read(customerID);
+        return this.repository.findById(customerID).orElse(null);
     }
 
     @Override
     public Customer update(Customer customer) {
-        return this.customerRepository.update(customer);
+        if (this.repository.existsById(customer.getCustomerID())) {
+            return this.repository.save(customer);
+        }
+        return null;
     }
 
     @Override
     public void delete(String customerID) {
-        this.customerRepository.delete(customerID);
+        this.repository.deleteById(customerID);
+        if (this.repository.existsById(customerID)) {
+            System.out.println("Deleted");
+        } else {
+            System.out.println("Not found.");
+        }
     }
 
     @Override
     public Set<Customer> getAll() {
-        return this.customerRepository.getAll();
+        return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 }
