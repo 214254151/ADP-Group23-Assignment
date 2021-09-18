@@ -9,54 +9,49 @@
 package za.ac.cput.service.product;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.entity.product.Supplier;
 import za.ac.cput.repository.product.SupplierRepository;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class SupplierService implements ISupplierService {
 
-    private static SupplierService supplierService;
+    private static SupplierService supplierService = null;
+
+    @Autowired
     private SupplierRepository supplierRepository;
 
-    private SupplierService(){
-        this.supplierRepository = SupplierRepository.getRepository();
-
-    }
-
-    public static SupplierService getSupplierService(){
-        if(supplierService ==null){
-            supplierService = new SupplierService();
-        }
-        return supplierService;
-    }
 
 
     @Override
     public Supplier create(Supplier supplier) {
-        return this.supplierRepository.create(supplier);
+        return this.supplierRepository.save(supplier);
     }
 
     @Override
     public Supplier read(String supplierID) {
-        return this.supplierRepository.read(supplierID);
+        return this.supplierRepository.findById(supplierID).orElse(null);
     }
 
     @Override
     public Supplier update(Supplier supplier) {
-        return this.supplierRepository.update(supplier);
+        if( this.supplierRepository.existsById(supplier.getSupplierID()))
+            return this.supplierRepository.save(supplier);
+        return null;
     }
 
     @Override
     public void delete(String supplierID) {
-        this.supplierRepository.delete(supplierID);
+        this.supplierRepository.deleteById(supplierID);
 
     }
 
     @Override
     public Set<Supplier> getAll() {
-        return this.supplierRepository.getAll();
+        return this.supplierRepository.findAll().stream().collect(Collectors.toSet());
     }
 }

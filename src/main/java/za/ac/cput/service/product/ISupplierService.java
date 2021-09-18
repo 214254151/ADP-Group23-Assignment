@@ -13,5 +13,5 @@ import za.ac.cput.service.IService;
 import java.util.Set;
 
 public interface ISupplierService extends IService<Supplier, String> {
-    public Set<Supplier> getAll();
+     Set<Supplier> getAll();
 }
