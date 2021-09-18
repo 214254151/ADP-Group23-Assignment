@@ -1,11 +1,11 @@
+
 ///**
 // * Author: Tauriq-Allie Wilkinson (219071330)
 // * Group 23
-// * Supplier Repository Test
-// * SupplierRepositoryTest.java
+// * Supplier Service Test
+// * SupplierServiceTest.java
 // */
-//
-// package za.ac.cput.repository.product;
+//package za.ac.cput.service.product;
 //
 //import org.junit.jupiter.api.MethodOrderer;
 //import org.junit.jupiter.api.Order;
@@ -17,15 +17,14 @@
 //import static org.junit.jupiter.api.Assertions.*;
 //
 //@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-//class SupplierRepositoryTest {
-//
-//   private static  SupplierRepository supRepo = SupplierRepository.getRepository();
+//class SupplierServiceTest {
+//    private static  SupplierService supServ = SupplierService.getRepository();
 //   private static Supplier supplier = SupplierFactory.build("Aneesa's Organics", "AOrganics@gmail.com","021 455 56874");
 //
 //   @Order(1)
 //   @Test
-//   void createTest(){
-//       Supplier c = supRepo.create(supplier);
+//   void create(){
+//       Supplier c = supServ.create(supplier);
 //       assertEquals(c.getSupplierID(), supplier.getSupplierID());
 //       System.out.println("Existing: " + c);
 //
@@ -33,16 +32,16 @@
 //
 //   @Order(2)
 //   @Test
-//   void readTest(){
+//   void read(){
 //
-//       Supplier r = supRepo.read(supplier.getSupplierID());
+//       Supplier r = supServ.read(supplier.getSupplierID());
 //       assertEquals(r.getSupplierID(), supplier.getSupplierID());
 //       System.out.println("Read: " + r);
 //   }
 //
 //    @Order(3)
 //    @Test
-//    void updateTest(){
+//    void update(){
 //
 //        Supplier u = new Supplier.Builder().copy(supplier).setSupplierContact("021 242 5671").build();
 //        assertEquals(u.getSupplierContact(), supplier.getSupplierContact());
@@ -51,17 +50,11 @@
 //
 //    @Order(4)
 //    @Test
-//    void deleteTest(){
+//    void delete(){
 //
-//        supRepo.deleteById(supplier.getSupplierID());
+//        supServ.delete(supplier.getSupplierID());
 //        System.out.println("Deleted: " + supplier.getSupplierID());
 //    }
 //
-//    @Order(5)
-//    @Test
-//    void getTest(){
-//
-//        System.out.println("Supplier: \n"  + supRepo.getAll());
-//    }
 //
 //}
