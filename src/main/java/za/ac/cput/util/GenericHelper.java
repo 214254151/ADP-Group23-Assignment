@@ -13,4 +13,13 @@ public class GenericHelper
         String regex = "^\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b";
         return email.matches(regex);
     }
+
+    public static boolean validateEmail(String supplierEmail) {
+        String regex = "^\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b";
+        return supplierEmail.matches(regex);
+    }
+
+
+
+
 }
