@@ -9,14 +9,14 @@ import java.util.HashSet;
 import java.util.Set;
 import za.ac.cput.entity.user.Appointment;
 
-
-
-
 public class AppointmentRepository implements IAppointmentRepository{
 
     private static AppointmentRepository repository = null;
     private Set<Appointment> appointmentDB;
-    private AppointmentRepository(){this.appointmentDB = new HashSet<>();}
+
+    private AppointmentRepository(){
+        this.appointmentDB = new HashSet<>();
+    }
 
     public static AppointmentRepository getRepository() {
         if (repository == null) {
@@ -64,6 +64,7 @@ public class AppointmentRepository implements IAppointmentRepository{
     }
 
     @Override
-    public Set<Appointment> getAll() {return appointmentDB;}
-
+    public Set<Appointment> getAll() {
+        return appointmentDB;
+    }
 }

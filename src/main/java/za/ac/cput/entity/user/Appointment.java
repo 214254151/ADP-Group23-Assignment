@@ -24,25 +24,25 @@ public class Appointment {
         this.endTime = builder.endTime;
     }
 
-//    public String getAppointmentID() {
-//        return appointmentID;
-//    }
-//    public String getCustomerID() {
-//        return customerID;
-//    }
-//    public String getEmployeeID() {
-//        return employeeID;
-//    }
-//    public String getAppointmentType() {
-//        return appointmentType;
-//    }
-//    public Double getEmployeeRate() {return employeeRate; }
-//    public String getStartTime() {
-//        return startTime;
-//    }
-//    public String getEndTime() {
-//        return endTime;
-//    }
+    public String getAppointmentID() {
+        return appointmentID;
+    }
+    public String getCustomerID() {
+        return customerID;
+    }
+    public String getEmployeeID() {
+        return employeeID;
+    }
+    public String getAppointmentType() {
+        return appointmentType;
+    }
+    public Double getEmployeeRate() {return employeeRate; }
+    public String getStartTime() {
+        return startTime;
+    }
+    public String getEndTime() {
+        return endTime;
+    }
 
     public static class Builder {
         private String appointmentID, customerID, employeeID, appointmentType, startTime, endTime;
