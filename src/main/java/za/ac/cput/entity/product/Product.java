@@ -1,7 +1,14 @@
 package za.ac.cput.entity.product;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
-    private String productId, supplierId, name;
+    @Id
+    private String productId;
+
+    private String supplierId, name;
     private double price;
 
     private Product(Builder builder) {
