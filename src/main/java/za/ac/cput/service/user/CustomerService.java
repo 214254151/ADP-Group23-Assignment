@@ -38,7 +38,10 @@ public class CustomerService implements ICustomerService {
     @Override
     public Customer update(Customer customer) {
         if (this.repository.existsById(customer.getCustomerID())) {
+            System.out.println("Found");
             return this.repository.save(customer);
+        } else {
+            System.out.println("Not Found");
         }
         return null;
     }
@@ -61,7 +64,6 @@ public class CustomerService implements ICustomerService {
     public Set<Customer> searchFirstName(String searchValue) {
         Set<Customer> getAllCustomers = getAll();
         Set<Customer> resultSet = new HashSet<>();
-        System.out.println(searchValue);
         for (Customer c : getAllCustomers) {
             String lowercaseC = c.getFirstName().toLowerCase();
             String lowerCaseS = searchValue.toLowerCase();
