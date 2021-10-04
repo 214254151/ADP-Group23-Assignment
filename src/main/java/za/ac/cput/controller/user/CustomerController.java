@@ -49,5 +49,26 @@ public class CustomerController {
         return customerService.getAll();
     }
 
+    @GetMapping("/search/firstname/{searchTerm}")
+    public Set<Customer> searchByFirstName(@PathVariable String searchTerm) {
+        return customerService.searchFirstName(searchTerm);
+    }
+
+    @GetMapping("/search/lastname/{searchTerm}")
+    public Set<Customer> searchByLastName(@PathVariable String searchTerm) {
+        return customerService.searchLastName(searchTerm);
+    }
+
+    @GetMapping("/search/contactnumber/{searchTerm}")
+    public Set<Customer> searchByContactNumber(@PathVariable String searchTerm) {
+        return customerService.searchContactNumber(searchTerm);
+    }
+
+    @GetMapping("/search/email/{searchTerm}")
+    public Set<Customer> searchByEmail(@PathVariable String searchTerm) {
+        return customerService.searchEmail(searchTerm);
+    }
+
+
 
 }
