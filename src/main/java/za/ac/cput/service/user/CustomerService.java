@@ -50,9 +50,9 @@ public class CustomerService implements ICustomerService {
     public void delete(String customerID) {
         this.repository.deleteById(customerID);
         if (this.repository.existsById(customerID)) {
-            System.out.println("Deleted");
+            System.out.println("Delete Unsuccessful");
         } else {
-            System.out.println("Not found.");
+            System.out.println("Deleted Customer :" + customerID);
         }
     }
 
