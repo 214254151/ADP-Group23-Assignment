@@ -22,6 +22,8 @@ import org.springframework.http.ResponseEntity;
 import za.ac.cput.entity.user.Customer;
 import za.ac.cput.factory.user.CustomerFactory;
 
+import javax.swing.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -30,6 +32,9 @@ class CustomerControllerTest {
 
     private static Customer customer = CustomerFactory.build("John", "Doe", "0821234567", "johndoe@gmail.com");
     private static Customer customerTwo = CustomerFactory.build("Jane", "Hey", "0827654321", "JaneHey@gmail.com");
+
+    private String securityUsername = "user";
+    private String securityPassword = "password";
 
     private final String baseURL = "http://localhost:8080/customer";
 
@@ -41,39 +46,46 @@ class CustomerControllerTest {
     @Test
     void create() {
         String url = baseURL + "/create";
-        ResponseEntity<Customer> postResponse = restTemplate.postForEntity(url, customer, Customer.class);
-        assertNotNull(postResponse);
-        assertNotNull(postResponse.getBody());
-        customer = postResponse.getBody();
-        System.out.println("Customer Saved: " + customer);
-        assertEquals(customer.getCustomerID(), postResponse.getBody().getCustomerID());
-    }
+//        ResponseEntity<Customer> postResponse = restTemplate.postForEntity(url, customer, Customer.class);
+//        assertNotNull(postResponse);
+//        assertNotNull(postResponse.getBody());
+//        customer = postResponse.getBody();
+//        System.out.println("Customer Saved: " + customer);
+//        assertEquals(customer.getCustomerID(), postResponse.getBody().getCustomerID());
 
-    // Create Test 2
-    @Order(2)
-    @Test
-    void createTwo() {
-        String url = baseURL + "/create";
-        ResponseEntity<Customer> postResponse = restTemplate.postForEntity(url, customerTwo, Customer.class);
-        assertNotNull(postResponse);
-        assertNotNull(postResponse.getBody());
-        customerTwo = postResponse.getBody();
-        System.out.println("Customer Saved: " + customerTwo);
-        assertEquals(customerTwo.getCustomerID(), postResponse.getBody().getCustomerID());
-    }
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
+        ResponseEntity<Customer> response;
+        HttpEntity<Customer> request = new HttpEntity<>(customer, header);
+        response = restTemplate.exchange(url, HttpMethod.POST, request, Customer.class);
+        assertEquals(customer.getCustomerID(), response.getBody().getCustomerID());
+        System.out.println(response.getBody());
+        }
 
     // Read Test
-    @Order(3)
+    @Order(2)
     @Test
     void read() {
         String url = baseURL + "/read/" + customer.getCustomerID();
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
         System.out.println("URL: " + url);
-        ResponseEntity<Customer> response = restTemplate.getForEntity(url, Customer.class);
+        HttpEntity<Customer> request = new HttpEntity<>(null, header);
+        ResponseEntity<Customer> response = restTemplate.exchange(url, HttpMethod.GET, request, Customer.class);
+        System.out.println(request.getHeaders());
+        System.out.println("11111111111111");
+        System.out.println(response);
+        System.out.println("22222222222222");
+        System.out.println(response.getStatusCode());
+        System.out.println("33333333333333");
+        System.out.println(response.getBody());
+
+
         assertEquals(customer.getCustomerID(), response.getBody().getCustomerID());
     }
 
     // Update Test
-    @Order(4)
+    @Order(3)
     @Test
     void update() {
         Customer customerUpdated = new Customer.Builder().copy(customer).lastName("Dig").builder();
@@ -84,7 +96,7 @@ class CustomerControllerTest {
     }
 
     // Delete Test
-    @Order(5)
+    @Order(4)
     @Test
     void delete() {
         String url = baseURL + "/delete/" + customer.getCustomerID();
@@ -92,7 +104,7 @@ class CustomerControllerTest {
     }
 
     // Get All Test
-    @Order(6)
+    @Order(5)
     @Test
     void getAllTest() {
         String url = baseURL + "/getall";
