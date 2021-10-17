@@ -7,8 +7,16 @@
 
 package za.ac.cput.entity.product;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+
+@Entity
 public class Supplier {
-    private String supplierID, supplierName, supplierEmail, supplierContact;
+
+    @Id
+    private String supplierID;
+    private String supplierName, supplierEmail, supplierContact;
 
 
     public Supplier() {
