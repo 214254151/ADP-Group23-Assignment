@@ -7,7 +7,7 @@ public class ProductFactory {
             String productId,
             String supplierId,
             String name,
-            double price
+            String price
     ) {
         return new Product.Builder()
                 .setProductId(productId)
