@@ -25,8 +25,6 @@ public class SupplierService implements ISupplierService {
     @Autowired
     private SupplierRepository supplierRepository;
 
-
-
     @Override
     public Supplier create(Supplier supplier) {
         return this.supplierRepository.save(supplier);
@@ -47,6 +45,11 @@ public class SupplierService implements ISupplierService {
     @Override
     public void delete(String supplierID) {
         this.supplierRepository.deleteById(supplierID);
+        if( this.supplierRepository.existsById(supplierID)){
+            System.out.println("Deleted");
+        }else{
+            System.out.println("Not Found");
+        }
 
     }
 
