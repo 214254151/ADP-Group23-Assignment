@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT) // Defined port so it uses to 8080
 class CustomerControllerTest {
 
-    private static Customer customer = CustomerFactory.build("John", "Doe", "0821234567", "johndoe@gmail.com");
+    private static Customer customer = CustomerFactory.build("testfirstname", "testlastname", "0821234567", "first@test.com");
     private static Customer customerTwo = CustomerFactory.build("Jane", "Hey", "0827654321", "JaneHey@gmail.com");
 
     private String securityUsername = "user";
@@ -46,12 +46,6 @@ class CustomerControllerTest {
     @Test
     void create() {
         String url = baseURL + "/create";
-//        ResponseEntity<Customer> postResponse = restTemplate.postForEntity(url, customer, Customer.class);
-//        assertNotNull(postResponse);
-//        assertNotNull(postResponse.getBody());
-//        customer = postResponse.getBody();
-//        System.out.println("Customer Saved: " + customer);
-//        assertEquals(customer.getCustomerID(), postResponse.getBody().getCustomerID());
 
         HttpHeaders header = new HttpHeaders();
         header.setBasicAuth(securityUsername, securityPassword);
@@ -72,16 +66,9 @@ class CustomerControllerTest {
         System.out.println("URL: " + url);
         HttpEntity<Customer> request = new HttpEntity<>(null, header);
         ResponseEntity<Customer> response = restTemplate.exchange(url, HttpMethod.GET, request, Customer.class);
-        System.out.println(request.getHeaders());
-        System.out.println("11111111111111");
-        System.out.println(response);
-        System.out.println("22222222222222");
-        System.out.println(response.getStatusCode());
-        System.out.println("33333333333333");
-        System.out.println(response.getBody());
-
 
         assertEquals(customer.getCustomerID(), response.getBody().getCustomerID());
+        System.out.println(response);
     }
 
     // Update Test
@@ -90,25 +77,52 @@ class CustomerControllerTest {
     void update() {
         Customer customerUpdated = new Customer.Builder().copy(customer).lastName("Dig").builder();
         String url = baseURL + "/update";
-        System.out.println("Updated Customer: " + customerUpdated);
-        ResponseEntity<Customer> response = restTemplate.postForEntity(url, customerUpdated, Customer.class);
-        assertNotNull(response.getBody());
-    }
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
 
-    // Delete Test
-    @Order(4)
-    @Test
-    void delete() {
-        String url = baseURL + "/delete/" + customer.getCustomerID();
-        restTemplate.delete(url);
+        System.out.println("Updated Customer: " + customerUpdated);
+        HttpEntity<Customer> request = new HttpEntity<>(customerUpdated, header);
+        ResponseEntity<Customer> response = restTemplate.exchange(url, HttpMethod.POST, request, Customer.class);
+        assertNotNull(response.getBody());
+        System.out.println(response);
     }
 
     // Get All Test
-    @Order(5)
+    @Order(4)
     @Test
-    void getAllTest() {
+    void getAllTest1() {
         String url = baseURL + "/getall";
         HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
+        HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
+        ResponseEntity<String> responseGetAll = restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
+        System.out.println("Get All Test (Customers): ");
+        System.out.println(responseGetAll);
+        System.out.println(responseGetAll.getBody());
+    }
+
+    // Delete Test
+    @Order(5)
+    @Test
+    void delete() {
+        String url = baseURL + "/delete/" + customer.getCustomerID();
+
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
+        HttpEntity<String> request = new HttpEntity<>(null, header);
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, request, String.class);
+        System.out.println(response);
+        System.out.println("Deleted Customer: " + customer);
+        assertEquals(200, response.getStatusCodeValue());
+    }
+
+    // Get All Test
+    @Order(6)
+    @Test
+    void getAllTest2() {
+        String url = baseURL + "/getall";
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
         HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
         ResponseEntity<String> responseGetAll = restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
         System.out.println("Get All Test (Customers): ");
