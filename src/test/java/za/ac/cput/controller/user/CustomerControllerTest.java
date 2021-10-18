@@ -59,7 +59,6 @@ class CustomerControllerTest {
         HttpEntity<Customer> request = new HttpEntity<>(customer, header);
         response = restTemplate.exchange(url, HttpMethod.POST, request, Customer.class);
         assertEquals(customer.getCustomerID(), response.getBody().getCustomerID());
-        System.out.println(response.getBody());
         }
 
     // Read Test
@@ -72,14 +71,6 @@ class CustomerControllerTest {
         System.out.println("URL: " + url);
         HttpEntity<Customer> request = new HttpEntity<>(null, header);
         ResponseEntity<Customer> response = restTemplate.exchange(url, HttpMethod.GET, request, Customer.class);
-        System.out.println(request.getHeaders());
-        System.out.println("11111111111111");
-        System.out.println(response);
-        System.out.println("22222222222222");
-        System.out.println(response.getStatusCode());
-        System.out.println("33333333333333");
-        System.out.println(response.getBody());
-
 
         assertEquals(customer.getCustomerID(), response.getBody().getCustomerID());
     }
