@@ -25,9 +25,6 @@ public class SupplierFactory {
             return null;
         }
 
-        Supplier supplier = new Supplier.Builder().setSupplierID(supplierID).setSupplierName(supplierName)
-                .setSupplierEmail(supplierEmail).setSupplierContact(supplierContact).build();
-
         return new Supplier.Builder().setSupplierID(supplierID).setSupplierName(supplierName)
                 .setSupplierEmail(supplierEmail).setSupplierContact(supplierContact).build();
     }

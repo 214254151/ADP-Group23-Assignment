@@ -12,7 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SupplierFactoryTest {
 
-    private SupplierFactory shampooSupplier, dyeSupplier, newShampSupplier;
+    private SupplierFactory shampooSupplier;
+    private SupplierFactory dyeSupplier;
+    private SupplierFactory newShampSupplier;
 
 
     @BeforeEach
