@@ -28,9 +28,12 @@ class SupplierControllerTest {
 
     private static Supplier supplier = SupplierFactory.build("Checkers", "CheckersHQ@yahoo.com", "021 456 7891");
     private static Supplier supplierV2 = SupplierFactory.build("Aneesa's Organics", "AOrganics@gmail.com", "021 455 56874");
+
+    private final String baseURL = "http://localhost:8080/supplier";
+
     @Autowired
     private TestRestTemplate rTemplate;
-    private final String baseURL = "http://localhost:8080/supplier";
+
 
     @Order(1)
     @Test
@@ -42,7 +45,7 @@ class SupplierControllerTest {
         assertNotNull(postResponse.getBody());
         supplier = postResponse.getBody();
         System.out.println("Supplier Saved: " + supplier);
-        assertEquals(supplier.getSupplierID(), postResponse);
+        assertEquals(supplier.getSupplierID(), postResponse.getBody().getSupplierID());
     }
 
     @Order(2)
@@ -55,7 +58,7 @@ class SupplierControllerTest {
         assertNotNull(postResponse.getBody());
         supplierV2 = postResponse.getBody();
         System.out.println("Supplier Saved: " + supplierV2);
-        assertEquals(supplier.getSupplierID(), postResponse);
+        assertEquals(supplierV2.getSupplierID(), postResponse.getBody().getSupplierID());
     }
 
     @Order(3)
@@ -72,7 +75,7 @@ class SupplierControllerTest {
     void update() {
         Supplier update = new Supplier.Builder().copy(supplier).setSupplierEmail("Checkers@gmail.com").build();
         String url = baseURL + "/update";
-        System.out.println("Updated Supplier: " + supplier);
+        System.out.println("Updated Supplier: " + update);
         ResponseEntity<Supplier> response = rTemplate.postForEntity(url, update, Supplier.class);
         assertNotNull(response.getBody());
     }
