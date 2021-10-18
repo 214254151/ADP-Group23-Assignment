@@ -8,14 +8,17 @@ public class Product {
     @Id
     private String productId;
 
-    private String supplierId, name;
-    private double price;
+    private String supplierId, name, price;
 
     private Product(Builder builder) {
         this.productId = builder.productId;
         this.supplierId = builder.supplierId;
         this.name = builder.name;
         this.price = builder.price;
+    }
+
+    public Product() {
+
     }
 
 
@@ -31,7 +34,7 @@ public class Product {
         return name;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
@@ -46,8 +49,7 @@ public class Product {
     }
 
     public static class Builder {
-        private String productId, supplierId, name;
-        private double price;
+        private String productId, supplierId, name, price;
 
         public Builder setProductId(String productId) {
             this.productId = productId;
@@ -64,7 +66,7 @@ public class Product {
             return this;
         }
 
-        public Builder setPrice(double price){
+        public Builder setPrice(String price){
             this.price = price;
             return this;
         }

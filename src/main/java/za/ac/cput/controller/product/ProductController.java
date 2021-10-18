@@ -1,10 +1,11 @@
 package za.ac.cput.controller.product;
 
-/**  Name: Antin Williams
- *  Student Number: 219212058
- *  Group: 23
- *
- *  Class for Product Controller
+/**
+ * Name: Antin Williams
+ * Student Number: 219212058
+ * Group: 23
+ * <p>
+ * Class for Product Controller
  */
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +47,15 @@ public class ProductController {
     @GetMapping("/getall")
     public Set<Product> getAll() {
         return productService.getAll();
+    }
+
+    @GetMapping("/search/name/{searchTerm}")
+    public Set<Product> searchByName(@PathVariable String searchTerm) {
+        return productService.searchName(searchTerm);
+    }
+
+    @GetMapping("/search/price/{searchTerm}")
+    public Set<Product> searchByPrice(@PathVariable String searchTerm) {
+        return productService.searchPrice(searchTerm);
     }
 }

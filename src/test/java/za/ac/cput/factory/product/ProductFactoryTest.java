@@ -13,7 +13,7 @@ class ProductFactoryTest {
 
     @BeforeEach
     void setUp() {
-        product = ProductFactory.buildProduct("123","  123456","name", 50);
+        product = ProductFactory.buildProduct("123","  123456","name", "50");
     }
     @Test
     void buildUser(){

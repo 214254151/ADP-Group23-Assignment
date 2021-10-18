@@ -8,8 +8,10 @@ package za.ac.cput.service.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.entity.product.Product;
+import za.ac.cput.entity.user.Customer;
 import za.ac.cput.repository.product.ProductRepository;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -52,6 +54,34 @@ public class ProductService implements IProductService {
     public Set<Product> getAll()
     {
         return this.repository.findAll().stream().collect(Collectors.toSet());
+    }
+
+    public Set<Product> searchName(String searchValue) {
+        Set<Product> getAllProducts = getAll();
+        Set<Product> resultSet = new HashSet<>();
+        for (Product product : getAllProducts) {
+            String lowercaseName = product.getName().toLowerCase();
+            String lowerCaseSearch = searchValue.toLowerCase();
+
+            if (lowercaseName.contains(lowerCaseSearch)) {
+                resultSet.add(product);
+            }
+        }
+        return resultSet;
+    }
+
+    public Set<Product> searchPrice(String searchValue) {
+        Set<Product> getAllProducts = getAll();
+        Set<Product> resultSet = new HashSet<>();
+        for (Product product : getAllProducts) {
+            String expected = product.getPrice();
+            String actual = searchValue;
+
+            if (expected.contains(actual)) {
+                resultSet.add(product);
+            }
+        }
+        return resultSet;
     }
 }
 

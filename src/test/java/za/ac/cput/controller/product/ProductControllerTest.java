@@ -19,6 +19,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import za.ac.cput.entity.product.Product;
+import za.ac.cput.entity.user.Customer;
 import za.ac.cput.factory.product.ProductFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,9 +28,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 class ProductControllerTest {
 
-    private static Product product =    ProductFactory.buildProduct("123", "456", "name1", 100);
-    private static Product productTwo = ProductFactory.buildProduct("1234", "567", "name2", 1010);
+    private static Product product =    ProductFactory.buildProduct("123", "456", "name1", "100");
+    private static Product productTwo = ProductFactory.buildProduct("1234", "567", "name2", "1010");
 
+    private String securityUsername = "user";
+    private String securityPassword = "password";
     private final String baseURL = "http://localhost:8080/product";
 
     @Autowired
@@ -53,12 +56,13 @@ class ProductControllerTest {
     @Test
     void createTwo() {
         String url = baseURL + "/create";
-        ResponseEntity<Product> postResponse = restTemplate.postForEntity(url, productTwo, Product.class);
-        assertNotNull(postResponse);
-        assertNotNull(postResponse.getBody());
-        productTwo = postResponse.getBody();
-        System.out.println("Product Saved: " + productTwo);
-        assertEquals(productTwo.getProductId(), postResponse.getBody().getProductId());
+        HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(securityUsername, securityPassword);
+        ResponseEntity<Product> response;
+        HttpEntity<Product> request = new HttpEntity<>(product, header);
+        response = restTemplate.exchange(url, HttpMethod.POST, request, Product.class);
+        assertEquals(product.getProductId(), response.getBody().getProductId());
+        System.out.println(response.getBody());
     }
 
     // Read Test
