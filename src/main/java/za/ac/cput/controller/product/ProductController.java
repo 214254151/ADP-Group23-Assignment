@@ -1,22 +1,21 @@
 package za.ac.cput.controller.product;
 
-/**  Name: Antin Williams
- *  Student Number: 219212058
- *  Group: 23
- *
- *  Class for Product Controller
+/**
+ * Name: Antin Williams
+ * Student Number: 219212058
+ * Group: 23
+ * <p>
+ * Class for Product Controller
  */
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.entity.product.Product;
-import za.ac.cput.entity.user.Customer;
 import za.ac.cput.factory.product.ProductFactory;
 import za.ac.cput.service.product.ProductService;
 
 import java.util.Set;
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "@class")
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -54,6 +53,7 @@ public class ProductController {
     public Set<Product> searchByName(@PathVariable String searchTerm) {
         return productService.searchName(searchTerm);
     }
+
     @GetMapping("/search/price/{searchTerm}")
     public Set<Product> searchByPrice(@PathVariable String searchTerm) {
         return productService.searchPrice(searchTerm);
