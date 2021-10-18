@@ -37,8 +37,9 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Supplier update(Supplier supplier) {
-        if( this.supplierRepository.existsById(supplier.getSupplierID()))
+        if( this.supplierRepository.existsById(supplier.getSupplierID())) {
             return this.supplierRepository.save(supplier);
+        }
         return null;
     }
 
