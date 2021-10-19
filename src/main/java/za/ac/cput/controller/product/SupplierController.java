@@ -11,7 +11,9 @@ package za.ac.cput.controller.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import za.ac.cput.entity.product.Product;
 import za.ac.cput.entity.product.Supplier;
+import za.ac.cput.entity.user.Customer;
 import za.ac.cput.factory.product.SupplierFactory;
 import za.ac.cput.service.product.SupplierService;
 
@@ -49,6 +51,22 @@ public class SupplierController {
     @GetMapping("/getall")
     public Set<Supplier> getAll() {
         return supplierService.getAll();
+    }
+
+
+    @GetMapping("/search/name/{searchTerm}")
+    public Set<Supplier> searchByName(@PathVariable String searchTerm) {
+        return supplierService.searchName(searchTerm);
+    }
+
+    @GetMapping("/search/contactnumber/{searchTerm}")
+    public Set<Supplier> searchByContactNumber(@PathVariable String searchTerm) {
+        return supplierService.searchContact(searchTerm);
+    }
+
+    @GetMapping("/search/email/{searchTerm}")
+    public Set<Supplier> searchByEmail(@PathVariable String searchTerm) {
+        return supplierService.searchEmail(searchTerm);
     }
 
 }
