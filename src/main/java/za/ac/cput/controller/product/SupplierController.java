@@ -51,4 +51,20 @@ public class SupplierController {
         return supplierService.getAll();
     }
 
+
+    @GetMapping("/search/name/{searchTerm}")
+    public Set<Supplier> searchByName(@PathVariable String searchTerm) {
+        return supplierService.searchName(searchTerm);
+    }
+
+    @GetMapping("/search/contactnumber/{searchTerm}")
+    public Set<Supplier> searchByContactNumber(@PathVariable String searchTerm) {
+        return supplierService.searchContact(searchTerm);
+    }
+
+    @GetMapping("/search/email/{searchTerm}")
+    public Set<Supplier> searchByEmail(@PathVariable String searchTerm) {
+        return supplierService.searchEmail(searchTerm);
+    }
+
 }
