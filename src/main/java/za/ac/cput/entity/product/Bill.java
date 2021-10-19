@@ -14,7 +14,7 @@ public class Bill
     private String billID;
     private double subTotal, tax, total;
 
-    private Bill()
+    public Bill()
     {
     }
 

@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
-import org.springframework.test.util.AssertionErrors;
 import za.ac.cput.entity.product.Bill;
 import za.ac.cput.factory.product.BillFactory;
 
@@ -24,9 +23,13 @@ class BillControllerTest
 {
     private static Bill bill = BillFactory.build(100, 15, 115);
 
+    private String username = "user";
+    private String password = "password";
+
+    private final String baseURL = "http://localhost:8080/bill";
+
     @Autowired
     private TestRestTemplate restTemplate;
-    private final String baseURL = "http://localhost:8080/bill";
 
     @Order(1)
     @Test
@@ -79,6 +82,7 @@ class BillControllerTest
         restTemplate.delete(url);
     }
 
+    @Order(5)
     @Test
     void getAll()
     {
@@ -88,7 +92,7 @@ class BillControllerTest
         HttpEntity<String> httpEntity = new HttpEntity<>(null, header);
         ResponseEntity<Bill> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, Bill.class);
 
-        System.out.println("Gett all: ");
+        System.out.println("Get all: ");
         System.out.println(response);
         System.out.println(response.getBody());
     }
