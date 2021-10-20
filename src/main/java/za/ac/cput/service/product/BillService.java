@@ -15,8 +15,6 @@ import java.util.stream.Collectors;
 @Service
 public class BillService implements IBillService
 {
-   private static BillService service = null;
-
    @Autowired
     private BillRepository repository;
 
@@ -37,7 +35,7 @@ public class BillService implements IBillService
    {
        if (this.repository.existsById(bill.getBillID()))
            return this.repository.save(bill);
-       return null;
+       else return null;
    }
 
    @Override
