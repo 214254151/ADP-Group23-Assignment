@@ -11,7 +11,9 @@ package za.ac.cput.service.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import za.ac.cput.entity.product.Product;
 import za.ac.cput.entity.product.Supplier;
+import za.ac.cput.entity.user.Customer;
 import za.ac.cput.repository.product.SupplierRepository;
 
 import java.util.HashSet;
