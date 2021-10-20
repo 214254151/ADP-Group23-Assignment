@@ -102,16 +102,17 @@ public class Employee {
             return this;
         }
 
-        @Override
-        public String toString() {
-            return "Builder{" +
-                    "employeeID='" + employeeID + '\'' +
-                    ", firstName='" + firstName + '\'' +
-                    ", lastName='" + lastName + '\'' +
-                    ", phoneNumber='" + phoneNumber + '\'' +
-                    ", employeeRate=" + employeeRate +
-                    '}';
-        }
+
+    }
+    @Override
+    public String toString() {
+        return "Builder{" +
+                "employeeID='" + employeeID + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", employeeRate=" + employeeRate +
+                '}';
     }
 
 }
