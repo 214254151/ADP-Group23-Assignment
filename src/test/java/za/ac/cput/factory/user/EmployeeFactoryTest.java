@@ -26,11 +26,13 @@ class EmployeeFactoryTest {
 
         Employee e = EmployeeFactory.build("Harry","Maguire","0216549132", 20.00);
         assertEquals(e,e);
+        System.out.println(e);
     }
 
     @Test
     void testIdentity(){
         Employee e = EmployeeFactory.build("Bruno","Fernandes","0216549132", 20.00);
         assertSame(e,e);
+        System.out.println(e);
     }
 }
