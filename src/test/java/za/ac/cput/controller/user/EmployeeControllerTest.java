@@ -26,44 +26,54 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class EmployeeControllerTest {
-    private static Employee employee = EmployeeFactory.build("Jeff","beezos","885154",50.00);
+
 
     @Autowired
     private TestRestTemplate restTemp;
     private final String BASE_URL= "http://localhost:8080/employee";
-
+    private String Username = "user";
+    private String Password = "password";
+    private static Employee employee = EmployeeFactory.build("Jeff","beezos","885154",50.00);
 
 
 
     @Test
     void A_create() {
         String url = BASE_URL + "/create";
-        ResponseEntity<Employee> response = restTemp.postForEntity(url, employee, Employee.class);
-        assertNotNull(response);
-        assertNotNull(response.getBody());
-        employee = response.getBody();
+        HttpHeaders head = new HttpHeaders();
+        head.setBasicAuth(Username, Password);
+        ResponseEntity<Employee> response;
+        HttpEntity<Employee> request = new HttpEntity<>(employee, head);
+        response = restTemp.exchange(url,HttpMethod.POST, request, Employee.class);
+        assertEquals(employee.getFirstName(), response.getBody().getFirstName());
         System.out.println("Employee created: " + employee);
-        assertEquals(employee.getEmployeeID(), response.getBody().getEmployeeID());
+
     }
 
 
     @Test
     void B_read() {
         String url = BASE_URL + "/read/" + employee.getEmployeeID();
+        HttpHeaders head = new HttpHeaders();
+        head.setBasicAuth(Username, Password);
+        HttpEntity<Employee> request = new HttpEntity<>(employee, head);
+        ResponseEntity<Employee> response  = restTemp.exchange(url,HttpMethod.GET, request, Employee.class);
         System.out.println("URL: " + url);
-        ResponseEntity<Employee> response = restTemp.getForEntity(url, Employee.class);
         assertEquals(employee.getEmployeeID(), response.getBody().getEmployeeID());
+        System.out.println(response);
     }
 
 
     @Test
-
     void C_update() {
         Employee updated = new Employee.Builder().copy(employee).setFirstName("Martha").build();
         String url = BASE_URL + "/update";
+        HttpHeaders head = new HttpHeaders();
+        head.setBasicAuth(Username, Password);
+        HttpEntity<Employee> request = new HttpEntity<>(updated, head);
+        ResponseEntity<Employee> response  = restTemp.exchange(url,HttpMethod.POST, request, Employee.class);
         System.out.println("Updated Employee Info: " + updated);
-        ResponseEntity<Employee> response = restTemp.postForEntity(url, employee, Employee.class);
-        assertNotNull(response.getBody());
+        assertEquals(employee.getEmployeeID(), response.getBody().getEmployeeID());
     }
 
 
@@ -71,7 +81,11 @@ class EmployeeControllerTest {
     @Test
     void E_delete() {
         String url = BASE_URL + "/delete/" + employee.getEmployeeID();
-        restTemp.delete(url);
+        HttpHeaders head = new HttpHeaders();
+        head.setBasicAuth(Username, Password);
+        HttpEntity<String> entity = new HttpEntity<>(null, head);
+        ResponseEntity<String> response = restTemp.exchange(url, HttpMethod.DELETE, entity, String.class);
+
     }
 
 
