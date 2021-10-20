@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.entity.product.Product;
 import za.ac.cput.entity.product.Supplier;
-import za.ac.cput.entity.user.Customer;
 import za.ac.cput.factory.product.SupplierFactory;
 import za.ac.cput.service.product.SupplierService;
 
